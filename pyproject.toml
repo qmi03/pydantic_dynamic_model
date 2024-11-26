@@ -2,6 +2,7 @@
 name = "pydantic-dynamic-model"
 version = "0.1.0"
 description = "A library for defining and generating model with object"
+authors = [{ name = "Qmi", email = "minh.pham1126@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
