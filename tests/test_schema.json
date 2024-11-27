@@ -1,0 +1,377 @@
+{
+  "model_name": "BaseTransportJobInformation",
+  "fields": [
+    {
+      "name": "jobType",
+      "base_type": "string",
+      "wrappers": [],
+      "required": true,
+      "default": null,
+      "description": "Classify job type based on context, possible values: IMPORT, EXPORT, MISC, RAIL_INBOUND, RAIL_OUTBOUND",
+      "validator_defs": [
+        {
+          "validator_type": "custom",
+          "params": {
+            "customFunctionDef": "def validate(cls, v):\n    valid_types = ['IMPORT', 'EXPORT', 'MISC', 'RAIL_INBOUND', 'RAIL_OUTBOUND']\n    if v.upper() not in valid_types:\n        raise ValueError(f'Invalid jobType: {v}')\n    return v.upper()\n    "
+          },
+          "error_message": "Invalid job type"
+        }
+      ],
+      "enum_values": ["IMPORT", "EXPORT", "MISC", "RAIL_INBOUND", "RAIL_OUTBOUND"],
+      "metadata": {}
+    },
+    {
+      "name": "cusRefId",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "customer referal id",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "vessel",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "Vessel name (e.g., \"MV Oceanic\")",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "voyage",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "Voyage name (e.g., \"VOY123\")",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "portOfLoading",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "loading port location",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "portOfDischarge",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "discharge port location",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "eta",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "etd",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "referCutoffDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "emptyReceivalDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "emptyCutoffDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "impAvailableDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "impStorageStartDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "firstFreeDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "impStorageLastFreeDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "expReceivalCommencementDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "cargoCutoffDate",
+      "base_type": "datetime",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "agentName",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "consigneeName",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "consignorName",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "warehouseName",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "accountReceivableName",
+      "base_type": "string",
+      "wrappers": ["optional"],
+      "required": false,
+      "default": null,
+      "description": "",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    },
+    {
+      "name": "jobContainers",
+      "base_type": {
+        "model_name": "Container",
+        "fields": [
+          {
+            "name": "containerNumber",
+            "base_type": "string",
+            "wrappers": ["optional"],
+            "required": false,
+            "default": null,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          },
+          {
+            "name": "sealNumber",
+            "base_type": "string",
+            "wrappers": ["optional"],
+            "required": false,
+            "default": null,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          },
+          {
+            "name": "dropMode",
+            "base_type": "string",
+            "wrappers": ["optional"],
+            "required": false,
+            "default": null,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": [
+              "Sideloader Wait Unpacking/Packing",
+              "Standard Trailer-Drop Trailer",
+              "Standard Trailer Wait Unpacking/Packing", 
+              "Sideloader"
+            ],
+            "metadata": {}
+          },
+          {
+            "name": "containerSize",
+            "base_type": "string",
+            "wrappers": ["optional"],
+            "required": false,
+            "default": null,
+            "description": "ISO standards for container size. The answer should be in the provided enums",
+            "validator_defs": [],
+            "enum_values": [
+              "40REHC", "40RE", "20RE", "400T", "200T", 
+              "20FR", "40FR", "20HC", "40HC", "40GP", "20GP"
+            ],
+            "metadata": {}
+          },
+          {
+            "name": "grossWeight",
+            "base_type": "float",
+            "wrappers": [],
+            "required": true,
+            "default": null,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          },
+          {
+            "name": "netWeight",
+            "base_type": "float",
+            "wrappers": [],
+            "required": false,
+            "default": 0,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          },
+          {
+            "name": "tareWeight",
+            "base_type": "float",
+            "wrappers": [],
+            "required": false,
+            "default": 0,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          },
+          {
+            "name": "doorType",
+            "base_type": "string",
+            "wrappers": [],
+            "required": false,
+            "default": "any",
+            "description": "",
+            "validator_defs": [],
+            "enum_values": ["any", "rear", "fwd"],
+            "metadata": {}
+          },
+          {
+            "name": "hazardousGoods",
+            "base_type": "boolean",
+            "wrappers": [],
+            "required": false,
+            "default": false,
+            "description": "",
+            "validator_defs": [],
+            "enum_values": null,
+            "metadata": {}
+          }
+        ]
+      },
+      "wrappers": ["optional", "list"],
+      "required": false,
+      "default": null,
+      "description": "A list container information according to the schema",
+      "validator_defs": [],
+      "enum_values": null,
+      "metadata": {}
+    }
+  ]
+}
