@@ -1,7 +1,11 @@
 from enum import Enum
 import ast
 from typing import Self, Any, Optional, Dict, Union, List
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ConfigDict
+
+
+class Frozen(BaseModel):
+    model_config = ConfigDict(frozen=True)
 
 
 class SimpleType(str, Enum):
@@ -33,7 +37,7 @@ class ValidatorType(str, Enum):
     URL = "url"
 
 
-class FieldValidatorDef(BaseModel):
+class FieldValidatorDef(Frozen):
     """
     Represents a definition for a field validator.
 
@@ -53,10 +57,7 @@ class FieldValidatorDef(BaseModel):
             if "customFunctionDef" in self.params:
                 code = self.params["customFunctionDef"]
                 # Basic security checks
-                if any(
-                    keyword in code
-                    for keyword in ["import", "eval", "exec", "__"]
-                ):
+                if any(keyword in code for keyword in ["import", "eval", "exec", "__"]):
                     raise ValueError("Prohibited keywords in custom function")
                 # Validate it's a proper function
                 try:
@@ -77,7 +78,7 @@ class FieldValidatorDef(BaseModel):
         return self
 
 
-class FieldDefinition(BaseModel):
+class FieldDefinition(Frozen):
     """Definition of a single field in model"""
 
     name: str = Field(..., pattern="^[a-zA-Z_][a-zA-Z0-9_]*$")
@@ -91,13 +92,10 @@ class FieldDefinition(BaseModel):
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
-class ModelDefinition(BaseModel):
+class ModelDefinition(Frozen):
+    model_config = ConfigDict(protected_namespaces=())
     model_name: str = Field(..., pattern="^[a-zA-Z_][a-zA-Z0-9_]*$")
     fields: List[FieldDefinition]
-    config: Dict[str,Any] = Field(default_factory=dict)
+    config: Dict[str, Any] = Field(default_factory=dict)
     base_class: Optional[str] = None
     module_name: Optional[str] = None
-
-    class Config:
-        protected_namespaces = ()
-
