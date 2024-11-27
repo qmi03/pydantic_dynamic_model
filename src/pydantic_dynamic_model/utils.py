@@ -9,14 +9,14 @@ from .definitions import (
 from typing import Union, List, Any, Optional, Dict, Callable
 from pydantic import field_validator, Field
 from pydantic.types import date, datetime
-from .core import create_dynamic_model
 import ast
 import inspect
+from .core import create_dynamic_model
 
 
 def get_python_type(
     base_type: Union[SimpleType, ModelDefinition],
-    wrappers: Union[List[WrapperType], None] = None,
+    wrappers: List[WrapperType],
 ) -> Any:
     """Convert FieldType to actual Python type"""
 
@@ -28,7 +28,6 @@ def get_python_type(
         SimpleType.DATETIME: datetime,
         SimpleType.DATE: date,
     }
-
     result_type = (
         create_dynamic_model(base_type)
         if isinstance(base_type, ModelDefinition)
@@ -42,7 +41,7 @@ def get_python_type(
             elif wrapper == WrapperType.OPTIONAL:
                 result_type = Optional[result_type]
             elif wrapper == WrapperType.DICT:
-                result_type == Dict[str, result_type]
+                result_type = Dict[str, result_type]
 
     return result_type
 

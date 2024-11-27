@@ -21,7 +21,7 @@ def create_dynamic_model(model_definition: ModelDefinition) -> type[BaseModel]:
         ):
             config["use_enum_values"] = True
 
-        field_type = get_python_type(field.base_type)
+        field_type = get_python_type(base_type=field.base_type, wrappers=field.wrappers)
         field_info = create_field_info(field)
 
         field_definitions[field.name] = Annotated[field_type, field_info]
