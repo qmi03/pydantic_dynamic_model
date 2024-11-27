@@ -7,7 +7,8 @@ from .definitions import (
     ValidatorType,
 )
 from typing import Union, List, Any, Optional, Dict, Callable
-from pydantic import date, datetime, field_validator, Field
+from pydantic import field_validator, Field
+from pydantic.types import date, datetime
 from .core import create_dynamic_model
 import ast
 import inspect
