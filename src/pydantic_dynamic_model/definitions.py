@@ -94,6 +94,7 @@ class FieldDefinition(BaseModel):
 class ModelDefinition(BaseModel):
     model_name: str = Field(..., pattern="^[a-zA-Z_][a-zA-Z0-9_]*$")
     fields: List[FieldDefinition]
+    config: Dict[str,Any] = Field(default_factory=dict)
     base_class: Optional[str] = None
     module_name: Optional[str] = None
 
