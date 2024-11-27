@@ -54,7 +54,7 @@ class FieldValidatorDef(BaseModel):
                 code = self.params["customFunctionDef"]
                 # Basic security checks
                 if any(
-                    keyword in code.lower()
+                    keyword in code
                     for keyword in ["import", "eval", "exec", "__"]
                 ):
                     raise ValueError("Prohibited keywords in custom function")
