@@ -6,12 +6,14 @@ from .definitions import (
     FieldValidatorDef,
     ValidatorType,
 )
-from typing import Union, List, Any, Optional, Dict, Callable
+from typing import Union, List, Any, Optional, Dict, Callable, TYPE_CHECKING
 from pydantic import field_validator, Field
 from pydantic.types import date, datetime
 import ast
 import inspect
-from .core import create_dynamic_model
+
+if TYPE_CHECKING:
+    from .core import create_dynamic_model
 
 
 def get_python_type(
@@ -19,6 +21,7 @@ def get_python_type(
     wrappers: List[WrapperType],
 ) -> Any:
     """Convert FieldType to actual Python type"""
+    from .core import create_dynamic_model
 
     simple_type_mapping = {
         SimpleType.STRING: str,
