@@ -92,8 +92,8 @@ class FieldDefinition(Frozen):
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
-class ModelDefinition(BaseModel):
-    model_config = ConfigDict(frozen=True, protected_namespace=())
+class ModelDefinition(Frozen):
+    model_config = ConfigDict(protected_namespaces=())
 
     model_name: str = Field(..., pattern="^[a-zA-Z_][a-zA-Z0-9_]*$")
     fields: List[FieldDefinition]

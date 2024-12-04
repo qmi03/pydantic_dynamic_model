@@ -1,8 +1,5 @@
 from typing import Annotated
-from pydantic import (
-    BaseModel,
-    create_model,
-)
+from pydantic import BaseModel, create_model
 from .definitions import ModelDefinition
 from .utils import get_python_type, create_field_info, create_field_validators
 

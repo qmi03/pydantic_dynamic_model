@@ -14,7 +14,9 @@ def load_test_data(file_name):
 
 def test_dynamic_model_creation():
     model_def_raw_json = load_test_data("test_schema.json")
-    dynamic_model = create_dynamic_model(ModelDefinition.parse_obj(model_def_raw_json))
+    dynamic_model = create_dynamic_model(
+        ModelDefinition.model_validate(model_def_raw_json)
+    )
     # with open("lmao.json", mode="w", encoding="utf-8") as file:
     #     file.write(dynamic_model.schema_json(indent=2))
 
@@ -23,9 +25,11 @@ def test_dynamic_model_creation():
 
 def test_dynamic_model_parsing():
     model_def_raw_json = load_test_data("test_schema.json")
-    dynamic_model = create_dynamic_model(ModelDefinition.parse_obj(model_def_raw_json))
+    dynamic_model = create_dynamic_model(
+        ModelDefinition.model_validate(model_def_raw_json)
+    )
     example_raw_json = load_test_data("test_case.json")
-    instance = dynamic_model.parse_obj(example_raw_json)
+    instance = dynamic_model.model_validate(example_raw_json)
     assert instance is not None, "Parsing failed"
 
 
