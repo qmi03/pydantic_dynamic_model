@@ -1,8 +1,17 @@
 version = 1
 requires-python = ">=3.12"
 resolution-markers = [
-    "python_full_version < '3.13'",
-    "python_full_version >= '3.13'",
+    "python_full_version < '3.13' and sys_platform == 'darwin'",
+    "python_full_version >= '3.13' and sys_platform == 'darwin'",
+    "python_full_version < '3.13' and sys_platform == 'linux'",
+    "python_full_version >= '3.13' and sys_platform == 'linux'",
+    "python_full_version < '3.13' and implementation_name == 'cpython' and sys_platform != 'linux'",
+    "python_full_version >= '3.13' and implementation_name == 'cpython' and sys_platform != 'linux'",
+]
+supported-markers = [
+    "sys_platform == 'darwin'",
+    "sys_platform == 'linux'",
+    "implementation_name == 'cpython' and sys_platform != 'linux'",
 ]
 
 [[package]]
@@ -64,9 +73,9 @@ name = "pydantic"
 version = "2.9.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "annotated-types" },
-    { name = "pydantic-core" },
-    { name = "typing-extensions" },
+    { name = "annotated-types", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "pydantic-core", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "typing-extensions", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/b7/d9e3f12af310e1120c21603644a1cd86f59060e040ec5c3a80b8f05fae30/pydantic-2.9.2.tar.gz", hash = "sha256:d155cef71265d1e9807ed1c32b4c8deec042a44a50a4188b25ac67ecd81a9c0f", size = 769917 }
 wheels = [
@@ -78,7 +87,7 @@ name = "pydantic-core"
 version = "2.23.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions" },
+    { name = "typing-extensions", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e2/aa/6b6a9b9f8537b872f552ddd46dd3da230367754b6f707b8e1e963f515ea3/pydantic_core-2.23.4.tar.gz", hash = "sha256:2584f7cf844ac4d970fba483a717dbe10c1c1c96a969bf65d61ffe94df1b2863", size = 402156 }
 wheels = [
@@ -113,14 +122,14 @@ name = "pydantic-dynamic-model"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "pydantic" },
+    { name = "pydantic", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
 ]
 
 [package.dev-dependencies]
 dev = [
-    { name = "isort" },
-    { name = "pytest" },
-    { name = "ruff" },
+    { name = "isort", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "pytest", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "ruff", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
 ]
 
 [package.metadata]
@@ -138,10 +147,10 @@ name = "pytest"
 version = "8.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
-    { name = "iniconfig" },
-    { name = "packaging" },
-    { name = "pluggy" },
+    { name = "colorama", marker = "implementation_name == 'cpython' and sys_platform == 'win32'" },
+    { name = "iniconfig", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "packaging", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
+    { name = "pluggy", marker = "sys_platform == 'darwin' or sys_platform == 'linux' or implementation_name == 'cpython'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/8b/6c/62bbd536103af674e227c41a8f3dcd022d591f6eed5facb5a0f31ee33bbc/pytest-8.3.3.tar.gz", hash = "sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181", size = 1442487 }
 wheels = [
